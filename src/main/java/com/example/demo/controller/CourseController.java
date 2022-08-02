@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,12 @@ public class CourseController {
 	private List<Course> getCourseByfacultyName(@PathVariable("facultyName")String facultyName) {
 		return courseServiceImpl.getCourseByfacultyName(facultyName);
 	}
+	
+	@GetMapping("Courses/studentName/{studentName}")
+	private List<Course> getCourseBystudentName(@PathVariable("studentName")String studentName){
+		return courseServiceImpl.getCourseBystudentName(studentName);
+	}
+	
 	
 	@PostMapping("/Course/new")
 	private Course createCourse(@RequestBody Course course) {

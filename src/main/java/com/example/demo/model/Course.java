@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,6 +23,12 @@ public class Course {
 	
 	@Column(name = "Faculty_Name")
 	private String facultyName;
+	
+	@Column(name = "Student_Name")
+	private String studentName;
+	
+	@Column(name = "Slots")
+	private Time slot;
 	
 	@Column(name = "Start_Date")
 	private Date stdte;
@@ -54,6 +61,22 @@ public class Course {
 
 	public void setFacultyName(String facultyName) {
 		this.facultyName = facultyName;
+	}
+	
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+
+	public Time getSlot() {
+		return slot;
+	}
+
+	public void setSlot(Time slot) {
+		this.slot = slot;
 	}
 
 	public Date getStdte() {

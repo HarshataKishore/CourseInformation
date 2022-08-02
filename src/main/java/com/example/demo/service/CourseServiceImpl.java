@@ -1,4 +1,5 @@
 package com.example.demo.service;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,10 +36,14 @@ public class CourseServiceImpl {
 		return courseRepository.findByfacultyName(facultyName);
 	}
 	
+	public List<Course> getCourseBystudentName(String studentName){
+		return courseRepository.findBystudentName(studentName);
+	}
+	
 	public Course createCourse(Course course) {
-		
 		return courseRepository.save(course);
 	}
+	
 	public Optional<Course> getCourseById(int id) {
 		return courseRepository.findById(id);
 	}
