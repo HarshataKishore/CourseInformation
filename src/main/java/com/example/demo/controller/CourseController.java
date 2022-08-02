@@ -9,44 +9,49 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Course;
 import com.example.demo.service.CourseServiceImpl;
 
 @RestController
+@RequestMapping("/api")
 public class CourseController {
 	@Autowired
 	CourseServiceImpl courseServiceImpl;
 	
-	@GetMapping("/Course")
+	@GetMapping("/Courses")
 	private List<Course> getAllCourses(){
 		return courseServiceImpl.getAllCourses();
 	}
 	
-	@GetMapping("/Course/{id}")
-	private  Optional<Course> getCourse(@PathVariable("id")int id) {
+	@GetMapping("/Courses/id/{id}")
+	private  Optional<Course> getCourseById(@PathVariable("id")int id) {
 		return courseServiceImpl.getCourseById(id);
 	}
 	
-	@PostMapping("/Courses")
-	private int saveCourse(@RequestBody Course course) {
-		courseServiceImpl.saveCourse(course);
-		return course.getId();
+	@GetMapping("Courses/courseName/{courseName}")
+	private List<Course> getCourseBycourseName(@PathVariable("courseName")String courseName) {
+		return courseServiceImpl.getCourseBycourseName(courseName);
 	}
 	
-/*	@PutMapping("/Course/{CourseId}")
-	private Course update(@RequestBody Course course) {
-		int id = 0;
-		courseServiceImpl.updateCourse(course, id);
-		return course;
-	} */
-	@PutMapping("/Courses")
-	private Course update(@RequestBody Course course) {
+	@GetMapping("Courses/facultyName/{facultyName}")
+	private List<Course> getCourseByfacultyName(@PathVariable("facultyName")String facultyName) {
+		return courseServiceImpl.getCourseByfacultyName(facultyName);
+	}
+	
+	@PostMapping("/Course/new")
+	private Course createCourse(@RequestBody Course course) {
+		return courseServiceImpl.saveCourse(course);
+	}
+	
+	@PutMapping("/Courses/update/{id}")
+	private Course update(@PathVariable(value="id")int id,@RequestBody Course course) {
 		courseServiceImpl.saveCourse(course);
 		return course;
 	}
 	
-	@DeleteMapping("/Course/{CourseId}")
+	@DeleteMapping("/Courses/{id}")
 	private void delete(@PathVariable("id") int id) {
 		courseServiceImpl.delete(id);
 	}

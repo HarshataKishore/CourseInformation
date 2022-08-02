@@ -18,17 +18,29 @@ public class CourseServiceImpl {
 		courseRepository.findAll().forEach(courses -> course.add(courses)); 
 		return course;
 	}
-	public Optional<Course> getCourseById(int id) {
-		return courseRepository.findById(id);
-	}
 	public Course saveCourse(Course course) {
 		return courseRepository.save(course);
 	}
-	public Course updateCourse(Course course, int id) {
+	public Course update(Course course) {
 		return courseRepository.save(course);
 	}
 	public void delete(int id) {
 		courseRepository.deleteById(id);
+	}
+	public List<Course> getCourseBycourseName(String courseName) {
+		return courseRepository.findBycourseName(courseName);
+
+	}
+	public List<Course> getCourseByfacultyName(String facultyName) {
+		return courseRepository.findByfacultyName(facultyName);
+	}
+	
+	public Course createCourse(Course course) {
+		
+		return courseRepository.save(course);
+	}
+	public Optional<Course> getCourseById(int id) {
+		return courseRepository.findById(id);
 	}
 	
 }
